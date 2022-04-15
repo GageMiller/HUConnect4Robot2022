@@ -1,5 +1,7 @@
 #include "game.h"
-#include "io.h"
+#include "input.h"
+#include "output.h"
+#include "getMove.h"
 #include "AI_Move.h"
 #include "Board.h"
 #include <iostream>
@@ -15,11 +17,13 @@ void main() {
 	int difficulty;
 	welcome(cout);
 	while (!quit) {
-		difficulty = getDifficulty(cout, cin);
+		askForDifficulty(cout);
+		difficulty = getDifficulty(cin);
 		Game game;
 		GameResult result;
 		Piece winner;
-		Turn turn = getTurn(cout,cin);
+		askForTurn(cout);
+		Turn turn = getTurn(cin);
 		string response;
 		int move;
 		displayBoard(cout, game.currentBoard());
@@ -34,6 +38,10 @@ void main() {
 			}
 			else {
 				move = makeMove(Piece::Blue, game.currentBoard(), difficulty);
+				//Two player code
+				//askForMove(cout);
+				//move = getMove(cin);
+				//move--;
 				game.placeMove(Piece::Blue, move);
 				turn = Turn::Player;
 				cout << "AI ";
@@ -51,7 +59,8 @@ void main() {
 			result = GameResult::Lose;
 		}
 		returnGameResult(result, cout, game.currentBoard());
-		if (!isContinuing(cout, cin)) {
+		askIfContinuing(cout);
+		if (!isContinuing(cin)) {
 			quit = true;
 		}
 	}
