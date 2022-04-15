@@ -4,6 +4,7 @@
 #include "getMove.h"
 #include "AI_Move.h"
 #include "Board.h"
+#include "Hardware.h"
 #include <iostream>
 #include <string>
 using std::cin;
@@ -17,6 +18,7 @@ void main() {
 	int difficulty;
 	welcome(cout);
 	while (!quit) {
+		returnDropper();
 		askForDifficulty(cout);
 		difficulty = getDifficulty(cin);
 		Game game;
@@ -43,6 +45,9 @@ void main() {
 				//move = getMove(cin);
 				//move--;
 				game.placeMove(Piece::Blue, move);
+				positionDropper(move);
+				dropPiece();
+				returnDropper();
 				turn = Turn::Player;
 				cout << "AI ";
 			}
