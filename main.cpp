@@ -37,7 +37,7 @@ void main() {
 				cout << "You ";
 			}
 			else {
-				move = makeMove(Piece::Blue, game.currentBoard(), difficulty);
+				move = miniMax(game.currentBoard(), difficulty, 0 - INT_MAX, INT_MAX, Piece::Blue)[1];
 				//Two player code
 				//askForMove(cout);
 				//move = getMove(cin);

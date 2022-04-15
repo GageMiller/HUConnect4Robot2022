@@ -143,4 +143,15 @@ namespace c_4 {
 	{
 		return Board();
 	}
+	int Board::turns(){
+		int result = 0;
+		for (int i = 0; i < 6; i++) {
+			for (int j = 0; j < 7; j++) {
+				if (_grid[i][j] != Piece::Empty) {
+					result++;
+				}
+			}
+		}
+		return result;
+	}
 }

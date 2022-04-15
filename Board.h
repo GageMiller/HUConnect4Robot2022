@@ -5,6 +5,11 @@ namespace c_4 {
 	using Grid = std::array<std::array<Piece, 7>, 6>;
 	enum class Dir {Positive, Negative};
 	enum class Turn { Player, AI };
+	enum class GameResult {
+		Win,
+		Lose,
+		Full
+	};
 	class Board {
 	private:
 		Grid _grid;
@@ -22,6 +27,7 @@ namespace c_4 {
 		bool isBoardFull();
 		Piece isWinner();
 		Board cloneBoard();
+		int turns();
 	};
 	
 }
